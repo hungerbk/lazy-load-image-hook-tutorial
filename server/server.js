@@ -7,7 +7,7 @@ const header = {
   setHeaders: (res, path) => {
     res.setHeader(
       "Cache-Control",
-      "private, no-cache, no-store, must-revalidate"
+      "private, no-cache, no-store, must-revalidate",
     );
     res.setHeader("Expires", "-1");
     res.setHeader("Pragma", "no-cache");
@@ -20,5 +20,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening at http://localhost:${port}`),
 );

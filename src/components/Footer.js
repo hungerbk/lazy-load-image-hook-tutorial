@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
 function Footer(props) {
-	return (
-		<section className={'Footer text-center py-12'}>
-			©Performance Optimization Lecture for React
-		</section>
-	)
+  return (
+    <section className={"Footer text-center py-12"}>최적화 튜토리얼</section>
+  );
 }
 
-export default Footer
+export default Footer;

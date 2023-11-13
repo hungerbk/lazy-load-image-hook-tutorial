@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function TextOnImg(props) {
-	return (
-		<div className={'TextOnImg'}>
-			TextOnImg
-		</div>
-	)
+  return <div className={"TextOnImg"}>TextOnImg</div>;
 }
 
-export default TextOnImg
+export default TextOnImg;
