@@ -2,24 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 function Card(props) {
   const imgRef = useRef();
-  // useEffect
-  useEffect(() => {
-    const callback = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // 이미지를 로딩
-          entry.target.src = entry.target.dataset.src;
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-    const observer = new IntersectionObserver(callback, {});
-    // 옵저버가 관찰
-    observer.observe(imgRef.current);
-    // 인털secting 될 때 callback
-
-    return () => observer.disconnect();
-  }, []);
+  useLazyLoadImage(imgRef);
 
   return (
     <div className="Card text-center">
@@ -32,3 +15,23 @@ function Card(props) {
 }
 
 export default Card;
+
+const useLazyLoadImage = (imgRef, options = {}) => {
+  useEffect(() => {
+    if (!imgRef.current) return;
+
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.src = entry.target.dataset.src;
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(imgRef.current);
+
+    return () => observer.disconnect();
+  }, [imgRef, options]);
+};
